@@ -1,0 +1,18 @@
+spin_manifest_version = 2
+
+[application]
+name = "bites"
+version = "0.1.0"
+authors = ["Michelle Dhanani <michelle@fermyon.com>"]
+description = "small CRUD API for bites"
+
+[[trigger.http]]
+route = "/..."
+component = "bites"
+
+[component.bites]
+source = "main.wasm"
+allowed_http_hosts = []
+[component.bites.build]
+command = "tinygo build -target=wasi -gc=leaking -no-debug -o main.wasm main.go"
+watch = ["**/*.go", "go.mod"]
